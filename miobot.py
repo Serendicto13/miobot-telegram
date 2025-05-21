@@ -16,7 +16,7 @@ from telegram.ext import (
 from apscheduler.schedulers.background import BackgroundScheduler
 
 # Lee el token desde variable de entorno
-TOKEN = os.environ.get("TELEGRAM_TOKEN")
+TOKEN = os.environ.get("TOKEN")
 
 # Lista de reportes en memoria (temporal)
 reportes = []
