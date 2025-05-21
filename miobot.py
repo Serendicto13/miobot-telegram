@@ -1,3 +1,6 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 import logging
 import os
 import datetime
@@ -12,16 +15,16 @@ from telegram.ext import (
 )
 from apscheduler.schedulers.background import BackgroundScheduler
 
-# Lee el TOKEN desde variable de entorno para mayor seguridad
-TOKEN = os.environ.get("TOKEN", "7793377477:AAHyiIlhC9DRUpr8WCc2LndGMJ6tp2RE86w")
+# Lee el token desde variable de entorno
+TOKEN = os.environ.get("TELEGRAM_TOKEN")
 
-# Lista de reportes en memoria (para demo)
+# Lista de reportes en memoria (temporal)
 reportes = []
 
-# Palabras prohibidas para filtro simple
+# Palabras prohibidas (puedes ampliar la lista)
 palabras_prohibidas = ['grosería1', 'grosería2', 'idiota', 'hp', 'malparido']
 
-# Diccionario temporal para almacenar datos por usuario (flujo evento->estación)
+# Diccionario temporal por usuario
 user_data = {}
 
 logging.basicConfig(
@@ -106,7 +109,6 @@ def main():
     PORT = int(os.environ.get("PORT", "8080"))
     print(f"✅ Bot en línea con webhook en puerto {PORT}")
 
-    # Inicia webhook con los datos correctos
     app.run_webhook(
         listen="0.0.0.0",
         port=PORT,
